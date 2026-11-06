@@ -2,6 +2,5 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://anjelicam.github.io',
-  base: '/my-website',
+  site: 'https://anjelicam.github.io'
 });
