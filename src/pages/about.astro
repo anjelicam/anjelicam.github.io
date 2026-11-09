@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 
 const base = import.meta.env.BASE_URL;
+// Works whether or not BASE_URL ends with a slash
+const photoSrc = `${base.replace(/\/$/, "")}/images/anjelica.jpg`;
 ---
 
 <Layout title="About — Anjelica Martinez" sidebar={true}>
@@ -9,39 +11,71 @@ const base = import.meta.env.BASE_URL;
     <h1>About Me</h1>
 
     <div class="about-content">
-      <p>
-        Hi! I'm Anjelica Martinez, a data science student passionate about
-        using data to make a real-world impact. I love working at the intersection
-        of data and the things I care about most — gaming, music & audio,
-        health & wellness, environmental sustainability, and animal welfare.
-      </p>
+      <div class="intro">
+        <img
+          src={photoSrc}
+          alt="Portrait of Anjelica Martinez"
+          class="profile-photo"
+          width="220"
+          height="220"
+          loading="eager"
+        />
+        <p>
+          Hi! I'm Anjelica Martinez, an M.S. candidate in Data Analytics and
+          Computational Social Science at UMass Amherst, with a B.A. in
+          Psychology from San Jose State. I use statistical modeling and data
+          analysis to understand health and behavior, and I'm a native
+          Spanish speaker based in Canton, Mississippi.
+        </p>
+      </div>
 
       <p>
-        My work spans machine learning, data analysis, and visualization. I enjoy
-        the full process — from cleaning messy datasets to building models to
-        communicating results in a way that tells a story.
+        My background is in psychology research. I ran memory experiments at
+        SJSU's Carr Lab, helped collect Twitter data on tic disorders, and am a
+        co-author on a hippocampal MRI protocol paper in <em>Hippocampus</em>.
+        Before grad school I ran my own photography businesses for years, and
+        I still volunteer as a photographer and fundraiser for animal rescues.
       </p>
+
+      <h2>What I Care About</h2>
+      <ul>
+        <li>Behavioral and mental health</li>
+        <li>Maternal and child health</li>
+        <li>Public health, and health access for Spanish-speaking communities</li>
+        <li>Animal welfare and shelter outcomes</li>
+        <li>Gaming, music, and how they connect to stress and well-being</li>
+      </ul>
 
       <h2>What I'm Working On</h2>
       <p>
-        Right now I'm focused on building out my data science portfolio with
-        projects that reflect both my technical skills and my interests. I'm
-        particularly drawn to startups and mission-driven organizations where
-        data science can create meaningful change.
+        I'm finishing my master's (expected December 2026) and building a
+        portfolio of projects that reflect those interests, from childhood
+        asthma and low birth weight to music and mental health, repeat visits
+        at an animal shelter, and moral language in gaming debates.
       </p>
 
       <h2>Skills & Tools</h2>
       <p>
-        Python (pandas, scikit-learn, matplotlib), R, SQL, Jupyter Notebooks,
-        Git & GitHub, machine learning (classification, regression,
-        cross-validation), data visualization, and statistical analysis.
+        <strong>Working knowledge:</strong> R (tidyverse, ggplot2), Python
+        (pandas), data cleaning and exploratory analysis, data visualization,
+        linear regression, survey design (Qualtrics), RMarkdown, and Jupyter.
+      </p>
+      <p>
+        <strong>Familiar with:</strong> SQL, logistic and ordered logistic
+        regression, causal inference (DAGs), time-series and longitudinal
+        analysis, NLP and text analysis, machine learning, Bayesian and
+        network analysis, Git, and PsychoPy. Currently learning Tableau and
+        Power BI.
+      </p>
+      <p>
+        <strong>Languages:</strong> English and Spanish (native, bilingual).
       </p>
 
       <h2>Get in Touch</h2>
       <p>
         I'm always open to connecting! You can find me on
         <a href="https://github.com/anjelicam" target="_blank">GitHub</a> and
-        <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>,
+        <a href="https://linkedin.com/in/anjelicamartinez" target="_blank">LinkedIn</a>,
         or reach me by email at
         <a href="mailto:anjelicam@gmail.com">anjelicam@gmail.com</a>.
       </p>
@@ -62,8 +96,48 @@ const base = import.meta.env.BASE_URL;
     line-height: 1.2;
   }
 
+  /* Photo + first paragraph side by side */
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .profile-photo {
+    flex-shrink: 0;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-accent);
+  }
+
+  /* Stack photo above text on small screens */
+  @media (max-width: 640px) {
+    .intro {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+    }
+  }
+
   .about-content p {
     margin-bottom: 1.25rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+
+  .about-content .intro p {
+    margin-bottom: 0;
+  }
+
+  .about-content ul {
+    margin: 0 0 1.25rem 1.25rem;
     line-height: 1.8;
     color: var(--color-text);
   }
